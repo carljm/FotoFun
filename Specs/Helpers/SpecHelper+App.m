@@ -15,7 +15,7 @@
 
     for (NSString *directoryPath in directoryPaths) {
         NSError *errorCreatingDirectory = nil;
-        if (![fileManager createDirectoryAtPath:cachesDirectory
+        if (![fileManager createDirectoryAtPath:directoryPath
                     withIntermediateDirectories:YES
                                      attributes:nil
                                           error:&errorCreatingDirectory])
