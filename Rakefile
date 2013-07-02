@@ -58,11 +58,19 @@ def kill_simulator
   system %Q[killall -m -KILL "iPhone Simulator"]
 end
 
-task :default => [:trim_whitespace, :uispecs]
+task :default => [:trim, :uispecs]
 
 desc "Trim whitespace"
-task :trim_whitespace do
-  system_or_exit %Q[git status --short | awk '{if ($1 != "D" && $1 != "R") print $2}' | grep -e '.*\.[cmh]$' | xargs sed -i '' -e 's/	/    /g;s/ *$//g;']
+task :trim do
+  filenames = `git status --short | grep --invert-match ^D | cut -c 4-`.split("\n")
+  filenames.map! do |filename|
+    if filename.include?('->')
+      filename = filename.slice(filename.index("->")..-1)
+      filename.gsub!('-> ', '')
+    end
+    filename
+  end
+  system_or_exit %Q[echo '#{filenames.join("\n")}'| grep -E '.*\.m?[cmhn]\"?$' | xargs sed -i '' -e 's/    /    /g;s/ *$//g;']
 end
 
 desc "Remove any focus from specs"
