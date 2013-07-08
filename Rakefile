@@ -102,6 +102,6 @@ task :uispecs => :build_uispecs do
   }
 
   with_env_vars(env_vars) do
-    system_or_exit "#{File.join(build_dir("-iphonesimulator"), "#{UI_SPECS_TARGET_NAME}.app", UI_SPECS_TARGET_NAME)} -RegisterForSystemEvents 2>&1 | grep -v BKSetAccelerometerClientEventsEnabled";
+	system_or_exit "./bin/ios-sim launch #{File.join(build_dir("-iphonesimulator"), "#{UI_SPECS_TARGET_NAME}.app")} 2>&1 | grep -v BKSetAccelerometerClientEventsEnabled";
   end
 end
