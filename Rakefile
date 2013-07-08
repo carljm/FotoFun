@@ -94,9 +94,6 @@ require 'tmpdir'
 desc "Run UI specs"
 task :uispecs => :build_uispecs do
   env_vars = {
-    "DYLD_ROOT_PATH" => sdk_dir,
-    "IPHONE_SIMULATOR_ROOT" => sdk_dir,
-    "CFFIXED_USER_HOME" => Dir.tmpdir,
     "CEDAR_HEADLESS_SPECS" => "1",
     "CEDAR_REPORTER_CLASS" => "CDRColorizedReporter",
   }
