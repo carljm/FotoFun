@@ -86,7 +86,7 @@ end
 desc "Build UI specs"
 task :build_uispecs do
   kill_simulator
-  system_or_exit "xcodebuild -project #{PROJECT_NAME}.xcodeproj -target #{UI_SPECS_TARGET_NAME} -configuration #{CONFIGURATION} -sdk iphonesimulator build 2>&1 | grep -v xcactivitylog", output_file("uispecs")
+  system_or_exit "set -o pipefail; xcodebuild -project #{PROJECT_NAME}.xcodeproj -target #{UI_SPECS_TARGET_NAME} -configuration #{CONFIGURATION} -sdk iphonesimulator build 2>&1 | grep -v xcactivitylog", output_file("uispecs")
 end
 
 require 'tmpdir'
