@@ -21,12 +21,12 @@
 		B808BC9617122CA20049E94A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B808BC8C17122CA20049E94A /* Default@2x.png */; };
 		B808BC9717122CA20049E94A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B808BC8D17122CA20049E94A /* Default.png */; };
 		B808BC9817122CA20049E94A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B808BC8E17122CA20049E94A /* Default-568h@2x.png */; };
-		B808BCA017122DAE0049E94A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B808BC9E17122DAE0049E94A /* AppDelegate.m */; };
-		B808BCA117122DAE0049E94A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B808BC9E17122DAE0049E94A /* AppDelegate.m */; };
-		B808BCA417122DFF0049E94A /* AppDelegateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = B808BCA317122DFF0049E94A /* AppDelegateSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B808BCA617122E570049E94A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B808BCA517122E570049E94A /* Default-568h@2x.png */; };
 		B808BCAA17122F1A0049E94A /* SpecHelper+App.m in Sources */ = {isa = PBXBuildFile; fileRef = B808BCA917122F1A0049E94A /* SpecHelper+App.m */; };
 		B84D8D4B17E4F128002601C9 /* libCedar-StaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B84D8D4017E4F0F9002601C9 /* libCedar-StaticLib.a */; };
+		B84D8D5117E4F310002601C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D8D5017E4F310002601C9 /* AppDelegate.m */; };
+		B84D8D5217E4F310002601C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D8D5017E4F310002601C9 /* AppDelegate.m */; };
+		B84D8D5717E4F35C002601C9 /* AppDelegateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = B84D8D5617E4F35C002601C9 /* AppDelegateSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,13 +113,13 @@
 		B808BC8E17122CA20049E94A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B808BC9117122CA20049E94A /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		B808BC9217122CA20049E94A /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; sourceTree = "<group>"; };
-		B808BC9E17122DAE0049E94A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B808BC9F17122DAE0049E94A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B808BCA317122DFF0049E94A /* AppDelegateSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegateSpec.mm; sourceTree = "<group>"; };
 		B808BCA517122E570049E94A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B808BCA817122F1A0049E94A /* SpecHelper+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpecHelper+App.h"; sourceTree = "<group>"; };
 		B808BCA917122F1A0049E94A /* SpecHelper+App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpecHelper+App.m"; sourceTree = "<group>"; };
 		B84D8D2D17E4F0F8002601C9 /* Cedar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cedar.xcodeproj; path = cedar/Cedar.xcodeproj; sourceTree = "<group>"; };
+		B84D8D4F17E4F310002601C9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B84D8D5017E4F310002601C9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B84D8D5617E4F35C002601C9 /* AppDelegateSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegateSpec.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,10 +181,11 @@
 		B808BC55171227FB0049E94A /* Specs */ = {
 			isa = PBXGroup;
 			children = (
-				B808BCA217122DCA0049E94A /* AppDelegate */,
-				B808BCA717122ED90049E94A /* Helpers */,
+				B84D8D5317E4F33B002601C9 /* Domain */,
 				B808BC65171228BD0049E94A /* Frameworks */,
+				B808BCA717122ED90049E94A /* Helpers */,
 				B808BC56171227FB0049E94A /* Supporting Files */,
+				B84D8D5417E4F348002601C9 /* UI */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -212,8 +213,9 @@
 		B808BC7017122C380049E94A /* App */ = {
 			isa = PBXGroup;
 			children = (
-				B808BC9D17122D6C0049E94A /* AppDelegate */,
+				B84D8D4D17E4F2B4002601C9 /* Domain */,
 				B808BC9C17122D020049E94A /* Supporting Files */,
+				B84D8D4C17E4F2AE002601C9 /* UI */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -230,23 +232,6 @@
 				B808BC9217122CA20049E94A /* App-Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B808BC9D17122D6C0049E94A /* AppDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				B808BC9F17122DAE0049E94A /* AppDelegate.h */,
-				B808BC9E17122DAE0049E94A /* AppDelegate.m */,
-			);
-			path = AppDelegate;
-			sourceTree = "<group>";
-		};
-		B808BCA217122DCA0049E94A /* AppDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				B808BCA317122DFF0049E94A /* AppDelegateSpec.mm */,
-			);
-			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		B808BCA717122ED90049E94A /* Helpers */ = {
@@ -279,6 +264,53 @@
 				B84D8D4817E4F0F9002601C9 /* OCUnitAppLogicTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B84D8D4C17E4F2AE002601C9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B84D8D4E17E4F2C1002601C9 /* AppDelegate */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B84D8D4D17E4F2B4002601C9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		B84D8D4E17E4F2C1002601C9 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B84D8D4F17E4F310002601C9 /* AppDelegate.h */,
+				B84D8D5017E4F310002601C9 /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		B84D8D5317E4F33B002601C9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		B84D8D5417E4F348002601C9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B84D8D5517E4F35C002601C9 /* AppDelegate */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B84D8D5517E4F35C002601C9 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B84D8D5617E4F35C002601C9 /* AppDelegateSpec.mm */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,9 +472,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B808BC5C171227FB0049E94A /* main.m in Sources */,
-				B808BCA017122DAE0049E94A /* AppDelegate.m in Sources */,
-				B808BCA417122DFF0049E94A /* AppDelegateSpec.mm in Sources */,
 				B808BCAA17122F1A0049E94A /* SpecHelper+App.m in Sources */,
+				B84D8D5217E4F310002601C9 /* AppDelegate.m in Sources */,
+				B84D8D5717E4F35C002601C9 /* AppDelegateSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B808BC9317122CA20049E94A /* main.m in Sources */,
-				B808BCA117122DAE0049E94A /* AppDelegate.m in Sources */,
+				B84D8D5117E4F310002601C9 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
