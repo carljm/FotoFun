@@ -1,7 +1,7 @@
 thrust_version: 0.1
 project_name: PDFreeBase
 app_name: App
-identity: "iPhone Distribution: Fair Auto, Inc"
+identity: 
 
 sim_binary: 'Specs/bin/ios-sim' # or 'Specs/bin/waxim'
 spec_targets:
