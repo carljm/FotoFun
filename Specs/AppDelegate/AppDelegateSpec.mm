@@ -1,3 +1,4 @@
+#import "SpecHelper+App.h"
 #import "AppDelegate.h"
 
 

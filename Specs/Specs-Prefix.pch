@@ -1,6 +1,4 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import <Cedar-iOS/SpecHelper.h>
-    #import <UIKit+PivotalSpecHelper-iOS/UIKit+PivotalSpecHelper.h>
 #endif

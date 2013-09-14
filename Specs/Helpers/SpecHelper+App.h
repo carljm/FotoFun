@@ -1,4 +1,5 @@
-#import <Cedar-iOS/Cedar-iOS.h>
+#import "SpecHelper.h"
+#import <UIKit+PivotalSpecHelper-iOS/UIKit+PivotalSpecHelper.h>
 
 
 @interface SpecHelper (App)
