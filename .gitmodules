@@ -1,6 +1,6 @@
 [submodule "Externals/thrust"]
 	path = Externals/thrust
-	url = https://github.com/wileykestner/thrust
+	url = git@github.com:wileykestner/thrust.git
 [submodule "Externals/cedar"]
 	path = Externals/cedar
 	url = git@github.com:pivotal/cedar.git
