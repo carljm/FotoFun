@@ -1,0 +1,3 @@
+[submodule "Externals/thrust"]
+	path = Externals/thrust
+	url = https://github.com/wileykestner/thrust

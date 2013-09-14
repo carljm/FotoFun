@@ -1,0 +1,20 @@
+thrust_version: 0.1
+project_name: PDFreeBase
+app_name: App
+identity: "iPhone Distribution: Fair Auto, Inc"
+
+sim_binary: 'Specs/bin/ios-sim' # or 'Specs/bin/waxim'
+spec_targets:
+  specs:
+    name: Specs
+    configuration: Release
+    target: Specs
+    sdk: 6.1
+
+api_token: #testflight api token goes here
+
+distributions:
+  acceptance:
+    token: #testflight token goes here
+    default_list: #testflight list name goes here
+    configuration: #testflight build configuration goes here
