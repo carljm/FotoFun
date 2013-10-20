@@ -24,7 +24,7 @@ describe(@"HomeController", ^{
         __block UIViewController *picker;
 
         beforeEach(^{
-            picker = [[[UIViewController alloc] init] autorelease];
+            picker = nice_fake_for([UIImagePickerController class]);
             provider stub_method(@selector(buttonTitle)).and_return(@"My Special Title");
             provider stub_method(@selector(picker)).and_return(picker);
             subject.view should_not be_nil;
