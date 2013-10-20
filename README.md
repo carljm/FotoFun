@@ -1,7 +1,7 @@
-PDFreeBase
+FotoFun
 =======
 
-`PDFreeBase` is a quick starting point for test driven iOS apps that use `Cedar` and
+`FotoFun` is a quick starting point for test driven iOS apps that use `Cedar` and
 `PivotalCoreKit`.
 
 It has an `App` target and a `Specs` target.
@@ -9,9 +9,9 @@ It has an `App` target and a `Specs` target.
 Quick start
 -----------
 
-    git clone https://github.com/wileykestner/PDFreeBase.git
-    cd PDFreeBase
-    open PDFreeBase.xcodeproj
+    git clone https://github.com/wileykestner/FotoFun.git
+    cd FotoFun
+    open FotoFun.xcodeproj
 
 ...
 
@@ -21,6 +21,6 @@ that to the existing, bare-bones `AppDelegate`.  Don't forget to write `Specs` f
 Running the `Specs`
 ------------------------
 
-    git clone https://github.com/wileykestner/PDFreeBase.git
-    cd PDFreeBase
+    git clone https://github.com/wileykestner/FotoFun.git
+    cd FotoFun
     rake
