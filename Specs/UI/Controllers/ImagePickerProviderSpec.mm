@@ -38,37 +38,27 @@ describe(@"ImagePickerProvider", ^{
                                          andRenameItTo:@selector(specIsSourceTypeAvailable:)];
     });
 
-
-    context(@"when a camera is available", ^{
+    void (^imagePickerProviderDetectsCameraAvailability)(UIImagePickerControllerSourceType, NSString *) = ^(UIImagePickerControllerSourceType sourceType, NSString *buttonTitle){
         beforeEach(^{
-            __sourceType = UIImagePickerControllerSourceTypeCamera;
+            __sourceType = sourceType;
             subject = [[[ImagePickerProvider alloc] init] autorelease];
         });
 
         it(@"has the correct buttonTitle", ^{
-            subject.buttonTitle should equal(@"Take a Photo");
+            subject.buttonTitle should equal(buttonTitle);
         });
 
         it(@"should have the correct imagePickerSourceType", ^{
-            subject.picker.sourceType should equal(UIImagePickerControllerSourceTypeCamera);
+            subject.picker.sourceType should equal(sourceType);
         });
+    };
 
+    context(@"when there is a camera", ^{
+        imagePickerProviderDetectsCameraAvailability(UIImagePickerControllerSourceTypeCamera, @"Take a Photo");
     });
 
-    context(@"when a camera is not available", ^{
-        beforeEach(^{
-            __sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            subject = [[[ImagePickerProvider alloc] init] autorelease];
-        });
-
-        it(@"has the correct buttonTitle", ^{
-            subject.buttonTitle should equal(@"Select a Photo");
-        });
-
-        it(@"should have the correct imagePickerSourceType", ^{
-            subject.picker.sourceType should equal(UIImagePickerControllerSourceTypePhotoLibrary);
-        });
-
+    context(@"when there is not a camera", ^{
+        imagePickerProviderDetectsCameraAvailability(UIImagePickerControllerSourceTypePhotoLibrary, @"Select a Photo");
     });
 });
 
