@@ -27,6 +27,7 @@
 		B82B69EB18138D7800C0CED6 /* libUIKit+PivotalSpecHelper-StaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B82B69E118138BCA00C0CED6 /* libUIKit+PivotalSpecHelper-StaticLib.a */; };
 		B82B69FD1813936300C0CED6 /* ImagePickerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B82B69FC1813936300C0CED6 /* ImagePickerProvider.m */; };
 		B82B69FE1813936300C0CED6 /* ImagePickerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B82B69FC1813936300C0CED6 /* ImagePickerProvider.m */; };
+		B82B6A121813997A00C0CED6 /* ImagePickerProviderSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = B82B6A111813997A00C0CED6 /* ImagePickerProviderSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B84D8D4B17E4F128002601C9 /* libCedar-StaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B84D8D4017E4F0F9002601C9 /* libCedar-StaticLib.a */; };
 		B84D8D5117E4F310002601C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D8D5017E4F310002601C9 /* AppDelegate.m */; };
 		B84D8D5217E4F310002601C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D8D5017E4F310002601C9 /* AppDelegate.m */; };
@@ -219,6 +220,7 @@
 		B82B69D418138BCA00C0CED6 /* UIKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UIKit.xcodeproj; path = PivotalCoreKit/UIKit/UIKit.xcodeproj; sourceTree = "<group>"; };
 		B82B69FB1813936300C0CED6 /* ImagePickerProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerProvider.h; sourceTree = "<group>"; };
 		B82B69FC1813936300C0CED6 /* ImagePickerProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerProvider.m; sourceTree = "<group>"; };
+		B82B6A111813997A00C0CED6 /* ImagePickerProviderSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImagePickerProviderSpec.mm; sourceTree = "<group>"; };
 		B84D8D2D17E4F0F8002601C9 /* Cedar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cedar.xcodeproj; path = cedar/Cedar.xcodeproj; sourceTree = "<group>"; };
 		B84D8D4F17E4F310002601C9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B84D8D5017E4F310002601C9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				B856670518137573002C4147 /* HomeControllerSpec.mm */,
+				B82B6A111813997A00C0CED6 /* ImagePickerProviderSpec.mm */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B808BC5C171227FB0049E94A /* main.m in Sources */,
+				B82B6A121813997A00C0CED6 /* ImagePickerProviderSpec.mm in Sources */,
 				B82B69FE1813936300C0CED6 /* ImagePickerProvider.m in Sources */,
 				B808BCAA17122F1A0049E94A /* SpecHelper+App.m in Sources */,
 				B84D8D5217E4F310002601C9 /* AppDelegate.m in Sources */,

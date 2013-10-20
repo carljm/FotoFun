@@ -5,26 +5,6 @@
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
 
-
-static UIImagePickerControllerSourceType __sourceType;
-
-
-@interface UIImagePickerController (Spec)
-
-+ (BOOL)specIsSourceTypeAvailable:(UIImagePickerControllerSourceType)sourceType;
-
-@end
-
-@implementation UIImagePickerController (Spec)
-
-+ (BOOL)specIsSourceTypeAvailable:(UIImagePickerControllerSourceType)sourceType
-{
-    return sourceType == __sourceType;
-}
-
-@end
-
-
 SPEC_BEGIN(HomeControllerSpec)
 
 describe(@"HomeController", ^{
@@ -32,7 +12,7 @@ describe(@"HomeController", ^{
     __block ImagePickerProvider *provider;
 
     beforeEach(^{
-        provider = [[ImagePickerProvider new] autorelease];
+        provider = nice_fake_for([ImagePickerProvider class]);
         subject = [[[HomeController alloc] initWithImagePickerProvider:provider] autorelease];
     });
 
@@ -41,66 +21,28 @@ describe(@"HomeController", ^{
     });
 
     describe(@"selecting an image", ^{
+        __block UIViewController *picker;
+
         beforeEach(^{
-            // make isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera return NO
-            [UIImagePickerController redirectClassSelector:@selector(isSourceTypeAvailable:)
-                                                        to:@selector(specIsSourceTypeAvailable:)
-                                             andRenameItTo:@selector(originalIsSourceTypeAvailable:)];
+            picker = [[[UIViewController alloc] init] autorelease];
+            provider stub_method(@selector(buttonTitle)).and_return(@"My Special Title");
+            provider stub_method(@selector(picker)).and_return(picker);
+            subject.view should_not be_nil;
         });
 
-        afterEach(^{
-            [UIImagePickerController redirectClassSelector:@selector(isSourceTypeAvailable:)
-                                                        to:@selector(originalIsSourceTypeAvailable:)
-                                             andRenameItTo:@selector(specIsSourceTypeAvailable:)];
+        it(@"should have the correct button title", ^{
+            [subject.pictureButton titleForState:UIControlStateNormal] should equal(@"My Special Title");
         });
 
-        context(@"when no camera is available", ^{
-
+        context(@"when the take picture button is tapped", ^{
             beforeEach(^{
-                __sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                subject.view should_not be_nil;
+                [subject.pictureButton tap];
             });
 
-            it(@"should have the correct button title", ^{
-                [subject.pictureButton titleForState:UIControlStateNormal] should equal(@"Select a Photo");
-            });
-
-            context(@"when the take picture button is tapped", ^{
-                beforeEach(^{
-                    [subject.pictureButton tap];
-                });
-
-                it(@"should show a picker controller for selecting a picture", ^{
-                    UIImagePickerController *picker = (UIImagePickerController *)subject.presentedViewController;
-                    picker.sourceType should equal(UIImagePickerControllerSourceTypePhotoLibrary);
-                });
+            it(@"should show a picker controller for selecting a picture", ^{
+                subject.presentedViewController should be_same_instance_as(picker);
             });
         });
-
-        context(@"when a camera is available", ^{
-
-            beforeEach(^{
-                __sourceType = UIImagePickerControllerSourceTypeCamera;
-                subject.view should_not be_nil;
-            });
-
-            it(@"should have the correct button title", ^{
-                [subject.pictureButton titleForState:UIControlStateNormal] should equal(@"Take a Photo");
-            });
-
-            context(@"when the take picture button is tapped", ^{
-                beforeEach(^{
-                    [subject.pictureButton tap];
-                });
-
-                it(@"should show a picker controller for taking a picture", ^{
-                    UIImagePickerController *picker = (UIImagePickerController *)subject.presentedViewController;
-                    picker.sourceType should equal(UIImagePickerControllerSourceTypeCamera);
-                });
-            });
-
-        });
-
     });
 });
 
