@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "HomeController.h"
+#import "ImagePickerProvider.h"
 
 
 @implementation AppDelegate
@@ -10,7 +11,7 @@
     CGRect bounds = [screen bounds];
     self.window = [[UIWindow alloc] initWithFrame:bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[HomeController alloc] init];
+    self.window.rootViewController = [[HomeController alloc] initWithImagePickerProvider:[[ImagePickerProvider alloc] init]];
     [self.window makeKeyAndVisible];
     return YES;
 }

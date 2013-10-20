@@ -1,6 +1,24 @@
 #import "HomeController.h"
+#import "ImagePickerProvider.h"
+
+
+@interface HomeController ()
+
+@property (strong, nonatomic) ImagePickerProvider *imagePickerProvider;
+
+@end
+
 
 @implementation HomeController
+
+- (id)initWithImagePickerProvider:(ImagePickerProvider *)imagePickerProvider
+{
+    self = [super init];
+    if (self) {
+        self.imagePickerProvider = imagePickerProvider;
+    }
+    return self;
+}
 
 #pragma mark - UIViewController
 
@@ -9,16 +27,13 @@
     [super viewDidLoad];
     self.pictureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.pictureButton.backgroundColor = [UIColor orangeColor];
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [self.pictureButton setTitle:@"Take a Photo" forState:UIControlStateNormal];
-        self.pickerControllerSourceType = UIImagePickerControllerSourceTypeCamera;
-    } else {
-        [self.pictureButton setTitle:@"Select a Photo" forState:UIControlStateNormal];
-        self.pickerControllerSourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
+    NSString *buttonTitle = [self.imagePickerProvider buttonTitle];
+    [self.pictureButton setTitle:buttonTitle forState:UIControlStateNormal];
+    [self.pictureButton sizeToFit];
+
     [self.pictureButton addTarget:self
-                               action:@selector(didTapPictureButton:)
-                     forControlEvents:UIControlEventTouchUpInside];
+                           action:@selector(didTapPictureButton:)
+                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.pictureButton];
 }
 
@@ -33,8 +48,7 @@
 
 - (void)didTapPictureButton:(id) sender
 {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.sourceType = self.pickerControllerSourceType;
+    UIImagePickerController *picker = [self.imagePickerProvider picker];
     [self presentViewController:picker animated:YES completion:nil];
 }
 

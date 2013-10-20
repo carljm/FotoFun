@@ -1,5 +1,6 @@
 #import "SpecHelper+App.h"
 #import "HomeController.h"
+#import "ImagePickerProvider.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -28,9 +29,11 @@ SPEC_BEGIN(HomeControllerSpec)
 
 describe(@"HomeController", ^{
     __block HomeController *subject;
+    __block ImagePickerProvider *provider;
 
     beforeEach(^{
-        subject = [[[HomeController alloc] init] autorelease];
+        provider = [[ImagePickerProvider new] autorelease];
+        subject = [[[HomeController alloc] initWithImagePickerProvider:provider] autorelease];
     });
 
     it(@"should have a take picture button", ^{

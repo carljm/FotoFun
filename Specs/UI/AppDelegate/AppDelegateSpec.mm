@@ -1,6 +1,8 @@
 #import "SpecHelper+App.h"
 #import "AppDelegate.h"
 #import "HomeController.h"
+#import "ImagePickerProvider.h"
+
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -41,9 +43,20 @@ describe(@"AppDelegate", ^{
             it(@"should be visible", ^{
                 window.hidden should_not be_truthy;
             });
-            
-            it(@"should have a root view controller", ^{
-                window.rootViewController should be_instance_of([HomeController class]);
+
+            describe(@"the root view controller", ^{
+                __block HomeController *homeController;
+                beforeEach(^{
+                    homeController = (HomeController *)window.rootViewController;
+                });
+
+                it(@"should have a root view controller", ^{
+                    homeController should be_instance_of([HomeController class]);
+                });
+
+                it(@"should have an image picker provider", ^{
+                    homeController.imagePickerProvider should be_instance_of([ImagePickerProvider     class]);
+                });
             });
         });
     });
