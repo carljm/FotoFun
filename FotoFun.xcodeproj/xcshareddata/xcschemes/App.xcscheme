@@ -17,7 +17,7 @@
                BlueprintIdentifier = "B808BC6B17122C380049E94A"
                BuildableName = "App.app"
                BlueprintName = "App"
-               ReferencedContainer = "container:PDFreeBase.xcodeproj">
+               ReferencedContainer = "container:FotoFun.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "B808BC6B17122C380049E94A"
             BuildableName = "App.app"
             BlueprintName = "App"
-            ReferencedContainer = "container:PDFreeBase.xcodeproj">
+            ReferencedContainer = "container:FotoFun.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -54,7 +54,7 @@
             BlueprintIdentifier = "B808BC6B17122C380049E94A"
             BuildableName = "App.app"
             BlueprintName = "App"
-            ReferencedContainer = "container:PDFreeBase.xcodeproj">
+            ReferencedContainer = "container:FotoFun.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -72,7 +72,7 @@
             BlueprintIdentifier = "B808BC6B17122C380049E94A"
             BuildableName = "App.app"
             BlueprintName = "App"
-            ReferencedContainer = "container:PDFreeBase.xcodeproj">
+            ReferencedContainer = "container:FotoFun.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
