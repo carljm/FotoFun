@@ -5,4 +5,6 @@
 
 @property (strong, nonatomic) UIButton *pictureButton;
 
+@property (assign, nonatomic) UIImagePickerControllerSourceType pickerControllerSourceType;
+
 @end

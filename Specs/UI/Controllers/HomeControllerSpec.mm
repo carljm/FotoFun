@@ -32,11 +32,11 @@ describe(@"HomeController", ^{
     beforeEach(^{
         subject = [[[HomeController alloc] init] autorelease];
     });
-    
+
     it(@"should have a take picture button", ^{
         subject.view.subviews should contain(subject.pictureButton);
     });
-    
+
     describe(@"selecting an image", ^{
         beforeEach(^{
             // make isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera return NO
@@ -44,33 +44,38 @@ describe(@"HomeController", ^{
                                                         to:@selector(specIsSourceTypeAvailable:)
                                              andRenameItTo:@selector(originalIsSourceTypeAvailable:)];
         });
-        
+
         afterEach(^{
             [UIImagePickerController redirectClassSelector:@selector(isSourceTypeAvailable:)
                                                         to:@selector(originalIsSourceTypeAvailable:)
                                              andRenameItTo:@selector(specIsSourceTypeAvailable:)];
         });
-        
+
         context(@"when no camera is available", ^{
-            
+
             beforeEach(^{
                 __sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 subject.view should_not be_nil;
             });
-            
+
             it(@"should have the correct button title", ^{
                 [subject.pictureButton titleForState:UIControlStateNormal] should equal(@"Select a Photo");
             });
-            
-            it(@"should show a picker controller for the image library", ^{
-                //                [subject.pictureButton sendActionsForControlEvents:UIControlEventTouchUpInside ];
-                UIImagePickerController *pickerController = (UIImagePickerController *)subject.presentedViewController;
-                pickerController.sourceType should equal(UIImagePickerControllerSourceTypePhotoLibrary);
+
+            context(@"when the take picture button is tapped", ^{
+                beforeEach(^{
+                    [subject.pictureButton tap];
+                });
+
+                it(@"should show a picker controller for selecting a picture", ^{
+                    UIImagePickerController *picker = (UIImagePickerController *)subject.presentedViewController;
+                    picker.sourceType should equal(UIImagePickerControllerSourceTypePhotoLibrary);
+                });
             });
         });
 
         context(@"when a camera is available", ^{
-            
+
             beforeEach(^{
                 __sourceType = UIImagePickerControllerSourceTypeCamera;
                 subject.view should_not be_nil;
@@ -84,7 +89,7 @@ describe(@"HomeController", ^{
                 beforeEach(^{
                     [subject.pictureButton tap];
                 });
-                
+
                 it(@"should show a picker controller for taking a picture", ^{
                     UIImagePickerController *picker = (UIImagePickerController *)subject.presentedViewController;
                     picker.sourceType should equal(UIImagePickerControllerSourceTypeCamera);
@@ -92,7 +97,7 @@ describe(@"HomeController", ^{
             });
 
         });
-        
+
     });
 });
 
