@@ -5,4 +5,6 @@
 
 @interface SpecHelper (App)
 
++ (UIImage *)imageWithSize:(CGSize)size;
+
 @end

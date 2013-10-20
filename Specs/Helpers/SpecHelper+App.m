@@ -30,6 +30,21 @@
     sleep(0.2f);
 }
 
++ (UIImage *)imageWithSize:(CGSize)size
+{
+    UIImage *image = [UIImage new];
+
+    UIGraphicsBeginImageContextWithOptions(size, YES, image.scale);
+
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
+    [image drawInRect:rect];
+    image = UIGraphicsGetImageFromCurrentImageContext();
+
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 #pragma mark - Private
 
 + (NSString *)userDirectory:(NSSearchPathDirectory)directory

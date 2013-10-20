@@ -4,7 +4,7 @@
 @class ImagePickerProvider;
 
 
-@interface HomeController : UIViewController
+@interface HomeController : UIViewController <UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) UIButton *pictureButton;
 @property (strong, nonatomic, readonly) ImagePickerProvider *imagePickerProvider;

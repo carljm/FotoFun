@@ -1,12 +1,13 @@
 #import "HomeController.h"
 #import "ImagePickerProvider.h"
+#import <QuartzCore/QuartzCore.h>
 
 
-@interface HomeController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface HomeController () <UINavigationControllerDelegate>
 
 @property (strong, nonatomic) ImagePickerProvider *imagePickerProvider;
-@property (assign, nonatomic) CGFloat firstX;
-@property (assign, nonatomic) CGFloat firstY;
+@property (strong, nonatomic) NSMutableDictionary *panningStartCenters;
+@property (assign, nonatomic) NSUInteger imageViewCount;
 
 @end
 
@@ -18,6 +19,8 @@
     self = [super init];
     if (self) {
         self.imagePickerProvider = imagePickerProvider;
+        self.imageViewCount = 0;
+        self.panningStartCenters = [NSMutableDictionary new];
     }
     return self;
 }
@@ -27,38 +30,46 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.pictureButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.pictureButton.backgroundColor = [UIColor orangeColor];
-    NSString *buttonTitle = [self.imagePickerProvider buttonTitle];
-    [self.pictureButton setTitle:buttonTitle forState:UIControlStateNormal];
-    [self.pictureButton sizeToFit];
 
+    NSString *buttonTitle = [self.imagePickerProvider buttonTitle];
+
+    self.pictureButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.pictureButton.tintColor = [UIColor whiteColor];
+    self.pictureButton.backgroundColor = [UIColor orangeColor];
+    self.pictureButton.layer.cornerRadius = 6.0f;
     [self.pictureButton addTarget:self
                            action:@selector(didTapPictureButton:)
                  forControlEvents:UIControlEventTouchUpInside];
+    [self.pictureButton setTitle:buttonTitle forState:UIControlStateNormal];
+
     [self.view addSubview:self.pictureButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.pictureButton.frame = CGRectMake(0, 0, 100, 44);
+    self.pictureButton.frame = CGRectMake(0, 0, 120, 44);
     self.pictureButton.center = [self.view convertPoint:self.view.center fromView:self.view.superview];
 }
 
 #pragma mark - <UIImagePickerControllerDelegate>
 
 - (void)imagePickerController:(UIImagePickerController *)picker
-        didFinishPickingImage:(UIImage *)image
-                  editingInfo:(NSDictionary *)editingInfo
+didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [picker dismissViewControllerAnimated:YES completion:^{
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:info[UIImagePickerControllerOriginalImage]];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.frame = CGRectMake(0, 0, 300, 400);
-        [imageView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewDidPan:)]];
+
+        UIGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(viewDidPan:)];
+        [imageView addGestureRecognizer:recognizer];
         imageView.userInteractionEnabled = YES;
         [self.view addSubview:imageView];
+
+        self.imageViewCount++;
+        imageView.tag = self.imageViewCount;
+        self.panningStartCenters[@(imageView.tag)] = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
     }];
 }
 
@@ -71,17 +82,21 @@
     [self presentViewController:picker animated:YES completion:nil];
 }
 
-- (void)imageViewDidPan:(UIPanGestureRecognizer *) sender
+- (void)viewDidPan:(UIPanGestureRecognizer *) recognizer
 {
-    CGPoint translatedPoint = [sender translationInView:sender.view.superview];
+    UIView *translatedView = recognizer.view;
+    NSValue *translatedStartCenterPointValue = self.panningStartCenters[@(translatedView.tag)];
+    CGPoint panStartCenter = [translatedStartCenterPointValue CGPointValue];
 
-    if([sender state] == UIGestureRecognizerStateBegan) {
-        self.firstX = sender.view.center.x;
-        self.firstY = sender.view.center.y;
+    if(recognizer.state == UIGestureRecognizerStateBegan) {
+        panStartCenter.x = translatedView.center.x;
+        panStartCenter.y = translatedView.center.y;
+        self.panningStartCenters[@(translatedView.tag)] = [NSValue valueWithCGPoint:panStartCenter];
     }
 
-    translatedPoint = CGPointMake(self.firstX+translatedPoint.x, self.firstY+translatedPoint.y);
-    [sender.view setCenter:translatedPoint];
-
+    CGPoint translatedPoint = [recognizer translationInView:recognizer.view.superview];
+    translatedPoint = CGPointMake(panStartCenter.x + translatedPoint.x, panStartCenter.y + translatedPoint.y);
+    [recognizer.view setCenter:translatedPoint];
 }
+
 @end

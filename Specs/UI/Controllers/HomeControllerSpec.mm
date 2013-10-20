@@ -2,8 +2,10 @@
 #import "HomeController.h"
 #import "ImagePickerProvider.h"
 
+
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
+
 
 SPEC_BEGIN(HomeControllerSpec)
 
@@ -20,7 +22,7 @@ describe(@"HomeController", ^{
         subject.view.subviews should contain(subject.pictureButton);
     });
 
-    describe(@"selecting an image", ^{
+    describe(@"picking an image", ^{
         __block UIViewController *picker;
 
         beforeEach(^{
@@ -41,6 +43,39 @@ describe(@"HomeController", ^{
 
             it(@"should show a picker controller for selecting a picture", ^{
                 subject.presentedViewController should be_same_instance_as(picker);
+            });
+        });
+    });
+
+    describe(@"as an image picker controller delegate", ^{
+        context(@"after an image has been picked", ^{
+            __block UIImagePickerController *picker;
+            __block UIImage *image;
+            __block NSDictionary *imageInfo;
+
+            beforeEach(^{
+                CGSize size = CGSizeMake(100.0f, 200.0f);
+                image = [SpecHelper imageWithSize:size];
+
+                imageInfo = @{UIImagePickerControllerOriginalImage: image};
+                picker = (UIImagePickerController *)[[UIViewController new] autorelease];
+                [subject imagePickerController:picker didFinishPickingMediaWithInfo:imageInfo];
+            });
+
+            describe(@"the new image view", ^{
+                __block UIImageView *imageView;
+                beforeEach(^{
+                    imageView = [subject.view.subviews lastObject];
+                });
+
+                it(@"should have been added to the main view", ^{
+                    imageView should be_instance_of([UIImageView class]);
+                });
+
+                it(@"should display the picked image", ^{
+                    imageView.image should be_same_instance_as(image);
+                });
+
             });
         });
     });
